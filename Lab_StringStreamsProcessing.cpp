@@ -22,6 +22,7 @@ map<string,vector<int> >f(istream& a,const vector<string>& b)
         while(ss>>word){
             if(find(b.begin(),b.end(),word)!=b.end())out[word].push_back(i);
         }
+        i++;
     }
     return out;
 }
@@ -50,8 +51,8 @@ int main(/*int argc, char*argv[]*/)
     input_file2.close();
     for(int i=0;i<key.size();i++)
     {
-        for(int j=0;j<out{i}.size();j++){
-            cout<<out{i}[j]<<endl;
+        for(int j=0;j<(out[key[i]].size());j++){
+            cout<<key[i]<<":"<<out[key[i]][j]<<endl;
         }
     }
     return 0;
