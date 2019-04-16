@@ -13,8 +13,7 @@ using namespace std;
 map<string,vector<int> >f(istream& a,const vector<string>& b)
 {
     map<string,vector<int> >out;
-    vector<int>aa;
-    int i = 0;
+    int i = 1;
     string line;
     while(getline(a,line)){
         istringstream ss(line);
@@ -27,22 +26,22 @@ map<string,vector<int> >f(istream& a,const vector<string>& b)
     return out;
 }
 
-int main(/*int argc, char*argv[]*/)
+int main(int argc, char*argv[])
 {
     /*ofstream file;
     file.open("123");
     file.close();*/
-    char keywords[]="keywords";
-    char text2search[]="text2search";
-    //string result=argc[3];
+    char* keywords=argv[1];
+    char* text2search=argv[2];
+    char* result=argv[3];
     ifstream input_file1;
     ifstream input_file2;
-    //fstream out;
+    ofstream output_file;
     input_file1.open(keywords);
     input_file2.open(text2search);
-    //out.open(result, ios::out);
+    output_file.open(result);
     string a;
-    vector<string>key;
+    vector<string>key;//存放keywords中的关键词
     while(input_file1>>a){
         key.push_back(a);
     }
@@ -51,9 +50,15 @@ int main(/*int argc, char*argv[]*/)
     input_file2.close();
     for(int i=0;i<key.size();i++)
     {
-        for(int j=0;j<(out[key[i]].size());j++){
-            cout<<key[i]<<":"<<out[key[i]][j]<<endl;
+        output_file << key[i] << " : { ";
+        if(out[key[i]].size()!=0) {
+            for (int j = 0; j < out[key[i]].size() - 1; j++) {
+                output_file << out[key[i]][j] << ",";
+            }
+            output_file << out[key[i]][out[key[i]].size()-1];
         }
+        output_file<<" }"<<"\n";
     }
+    output_file.close();
     return 0;
 }
