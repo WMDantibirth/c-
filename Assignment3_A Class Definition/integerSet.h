@@ -1,30 +1,35 @@
-#ifndef INTEGERSET_H
-#define INTEGERSET_H
+//
+// Created by Administrator on 2019/4/30 0030.
+//
+
+#ifndef CPP_FILE_INTEGERSET_H
+#define CPP_FILE_INTEGERSET_H
 
 
 class integerSet
 {
-    private:
-        int ability;
-        int* elements;
-        int used;
+private:
+    int ability;
+    int used;
 
-    public:
-        integerSet(int); //
-        integerSet(); //
+public:
+    int* elements;
+    integerSet(int); //
+    integerSet(); //
 
-        virtual ~integerSet(); //
+    virtual ~integerSet(); //
 
-        void insert(int); //
-        void erase(int); //
-        friend bool isSubset(integerSet); //
-        bool isMember(int); //
-        void print(); //
-        int size(); //
-        int capacity(); //
-        bool isEmpty(); //
-        void clear(); //
+    void insert(int); //
+    void erase(int); //
+    bool isSubset(integerSet); //
+    bool isMember(int); //
+    void print(); //
+    int size(); //
+    int capacity(); //
+    bool isEmpty(); //
+    void clear(); //
 
 };
 
-#endif // INTEGERSET_H
+
+#endif //CPP_FILE_INTEGERSET_H
