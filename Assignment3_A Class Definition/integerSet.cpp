@@ -1,8 +1,13 @@
+//
+// Created by Administrator on 2019/4/30 0030.
+//
+
 #include "integerSet.h"
+#include <iostream>
 
 integerSet::integerSet()
 {
-    elements = int[500];
+    elements = new int[500];
     ability = 500;
     used = 0;
 }
@@ -14,7 +19,7 @@ integerSet::integerSet(int r)
     used = 0;
 }
 
-integerSet::print()
+void integerSet::print()
 {
     std::cout<<"{";
     for(int i=0;i<used-2;i++)
@@ -23,18 +28,18 @@ integerSet::print()
     std::cout<<"}"<<std::endl;
 }
 
-integerSet::size()
+int integerSet::size()
 {
     return used;
 }
 
-integerSet::insert(int i)
+void integerSet::insert(int i)
 {
     elements[used] = i;
     used++;
 }
 
-integerSet::erase(int i)
+void integerSet::erase(int i)
 {
     for(int j=0;j<used;j++)
     {
@@ -50,23 +55,23 @@ integerSet::erase(int i)
     }
 }
 
-integerSet::isEmpty()
+bool integerSet::isEmpty()
 {
     if(used==0)return true;
     else return false;
 }
 
-integerSet::capacity()
+int integerSet::capacity()
 {
     return ability;
 }
 
-integerSet::clear()
+void integerSet::clear()
 {
     used=0;
 }
 
-integerSet::isMember(int r)
+bool integerSet::isMember(int r)
 {
     for(int i=0;i<used;i++)
     {
@@ -79,12 +84,12 @@ integerSet::isMember(int r)
     return false;
 }
 
-integerSet::isSubset(integerSet p)
+bool integerSet::isSubset(integerSet p)
 {
-    if(p.used > used) return false;
+    if(p.size() > used) return false;
     else
     {
-        for(int i=0;i<p.used;i++)
+        for(int i=0;i<p.size();i++)
         {
             for(int j=0;j<used;j++)
             {
