@@ -6,19 +6,18 @@
 #define CPP_FILE_INTEGERSET_H
 
 
-class integerSet
-{
+class integerSet{
 private:
     int ability;
     int used;
-
-public:
     int* elements;
+public:
     integerSet(int); //
     integerSet(); //
 
     virtual ~integerSet(); //
 
+    int* element();//
     void insert(int); //
     void erase(int); //
     bool isSubset(integerSet); //
@@ -28,7 +27,14 @@ public:
     int capacity(); //
     bool isEmpty(); //
     void clear(); //
+    integerSet setunion(integerSet);//
+    integerSet setintsection(integerSet);//
+    integerSet setdifference(integerSet);//
+    integerSet setsymmetricdifference(integerSet);//
 
+    struct bad_integerSet{
+        int errnum;
+    };
 };
 
 
