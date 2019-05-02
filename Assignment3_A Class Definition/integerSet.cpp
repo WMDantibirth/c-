@@ -149,7 +149,7 @@ integerSet integerSet::setsymmetricdifference(integerSet& p) {
     return r1.setunion(r2);
 }
 /*
-void integerSet::operator=(integerSet p) {
+integerSet integerSet::operator=(integerSet p) {
     int n[p.capacity()];
     elements=n;
     used=0;
@@ -158,6 +158,7 @@ void integerSet::operator=(integerSet p) {
         insert(p.element()[i]);
         std::cout<<"in s1:"<<n[i]<<"\nin s2:"<<p.element()[i]<<std::endl;
     }
+    return *this;
 }
 */
 integerSet::~integerSet(){
