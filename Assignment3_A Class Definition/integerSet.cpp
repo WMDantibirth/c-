@@ -15,7 +15,8 @@ integerSet::integerSet(int r){
     bad_integerSet bi;
     if(r<1){
         bi.errnum=1;
-        throw bi;}
+        throw bi;
+    }
     elements = new int[r];
     ability = r;
     used = 0;
@@ -27,9 +28,11 @@ int* integerSet::element() {
 
 void integerSet::print(){
     std::cout<<"{";
-    for(int i=0;i<used-2;i++)
-        std::cout<<elements[i]<<",";
-    std::cout<<elements[used-1];
+    if(used!=0){
+        for(int i=0;i<used-1;i++)
+            std::cout<<elements[i]<<",";
+        std::cout<<elements[used-1];
+    }
     std::cout<<"}"<<std::endl;
 }
 
@@ -38,20 +41,27 @@ int integerSet::size(){
 }
 
 void integerSet::insert(int i){
-    if(!isMember(i)) {
+    if(used>ability-1){
+        bad_integerSet bi;
+        bi.errnum=2;
+        throw bi;
+    }
+    else if(!isMember(i)) {
         elements[used] = i;
         used++;
     }
 }
 
 void integerSet::erase(int i){
-    for(int j=0;j<used;j++){
-        if(elements[j]==i){
-            for(int p=j;p<used-1;p++){
-                elements[p]=elements[p+1];
+    if(isMember(i)) {
+        for (int j = 0; j < used; j++) {
+            if (elements[j] == i) {
+                for (int p = j; p < used - 1; p++) {
+                    elements[p] = elements[p + 1];
+                }
+                used--;
+                break;
             }
-            used--;
-            break;
         }
     }
 }
@@ -70,6 +80,7 @@ void integerSet::clear(){
 }
 
 bool integerSet::isMember(int r){
+    if(used==0)return false;
     for(int i=0;i<used;i++){
         if(elements[i]==r){
             return true;
@@ -78,8 +89,9 @@ bool integerSet::isMember(int r){
     return false;
 }
 
-bool integerSet::isSubset(integerSet p){
+bool integerSet::isSubset(integerSet& p){
     if(p.size() > used) return false;
+    if(p.size()==0)return true;
     else{
         for(int i=0;i<p.size();i++){
             for(int j=0;j<used;j++){
@@ -91,7 +103,7 @@ bool integerSet::isSubset(integerSet p){
     }
 }
 
-integerSet integerSet::setdifference(integerSet p) {
+integerSet integerSet::setdifference(integerSet& p) {
     integerSet out;
     for(int i=0;i<used;i++){
         if(!p.isMember(elements[i])){
@@ -106,9 +118,9 @@ integerSet integerSet::setdifference(integerSet p) {
     return out;
 }
 
-integerSet integerSet::setunion(integerSet p) {
+integerSet integerSet::setunion(integerSet& p) {
     integerSet out;
-    for(int i =0;i<used;i++)out.insert(elements[i]);
+    for(int i=0;i<used;i++)out.insert(elements[i]);
     for(int j=0;j<p.size();j++){
         if(!isMember(p.element()[j])){
             out.insert(p.element()[j]);
@@ -117,14 +129,12 @@ integerSet integerSet::setunion(integerSet p) {
     return out;
 }
 
-integerSet integerSet::setintsection(integerSet t) {
+integerSet integerSet::setintsection(integerSet& t) {
     integerSet ans;
-    for(int i=0; i<used; i++)
-    {
+    for(int i=0; i<used; i++){
         int flag=0;
         for(int j=0; j<t.size(); j++)
-            if(elements[i]==t.element()[j])
-            {
+            if(elements[i]==t.element()[j]){
                 flag=1;
                 break;
             }
@@ -133,12 +143,23 @@ integerSet integerSet::setintsection(integerSet t) {
     return ans;
 }
 
-integerSet integerSet::setsymmetricdifference(integerSet p) {
+integerSet integerSet::setsymmetricdifference(integerSet& p) {
     integerSet r1{p.setdifference(*this)};
     integerSet r2{(*this).setdifference(p)};
     return r1.setunion(r2);
 }
-
+/*
+void integerSet::operator=(integerSet p) {
+    int n[p.capacity()];
+    elements=n;
+    used=0;
+    ability=p.capacity();
+    for(int i=0;i<p.size();i++){
+        insert(p.element()[i]);
+        std::cout<<"in s1:"<<n[i]<<"\nin s2:"<<p.element()[i]<<std::endl;
+    }
+}
+*/
 integerSet::~integerSet(){
     delete[]elements;//dtor
 }
