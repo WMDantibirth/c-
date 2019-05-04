@@ -151,6 +151,7 @@ integerSet integerSet::setsymmetricdifference(integerSet& p) {
 /*
 integerSet integerSet::operator=(integerSet p) {
     int n[p.capacity()];
+    delete[]elements;
     elements=n;
     used=0;
     ability=p.capacity();
