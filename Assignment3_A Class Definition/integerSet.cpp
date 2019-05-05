@@ -1,5 +1,5 @@
 //
-// Created by Administrator on 2019/4/30 0030.
+// Created by wmd on 2019/4/23.
 //
 
 #include "integerSet.h"
@@ -148,20 +148,21 @@ integerSet integerSet::setsymmetricdifference(integerSet& p) {
     integerSet r2{(*this).setdifference(p)};
     return r1.setunion(r2);
 }
-/*
-integerSet integerSet::operator=(integerSet p) {
-    int n[p.capacity()];
+
+integerSet& integerSet::operator=(integerSet p) {
+    int* n;
+    n = new int[p.capacity()];
     delete[]elements;
     elements=n;
     used=0;
     ability=p.capacity();
     for(int i=0;i<p.size();i++){
         insert(p.element()[i]);
-        std::cout<<"in s1:"<<n[i]<<"\nin s2:"<<p.element()[i]<<std::endl;
     }
     return *this;
 }
-*/
+
 integerSet::~integerSet(){
     delete[]elements;//dtor
 }
+
