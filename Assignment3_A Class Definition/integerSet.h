@@ -1,5 +1,5 @@
 //
-// Created by Administrator on 2019/4/30 0030.
+// Created by wmd on 2019/4/23.
 //
 
 #ifndef CPP_FILE_INTEGERSET_H
@@ -31,7 +31,7 @@ public:
     integerSet setintsection(integerSet&);//
     integerSet setdifference(integerSet&);//
     integerSet setsymmetricdifference(integerSet&);//
-    /*void operator=(integerSet);*/
+    integerSet& operator=(integerSet);
 
     struct bad_integerSet{
         int errnum=0;
