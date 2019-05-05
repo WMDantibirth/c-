@@ -67,8 +67,7 @@ void integerSet::erase(int i){
 }
 
 bool integerSet::isEmpty(){
-    if(used==0)return true;
-    else return false;
+    return used==0;
 }
 
 int integerSet::capacity(){
@@ -165,4 +164,3 @@ integerSet& integerSet::operator=(integerSet p) {
 integerSet::~integerSet(){
     delete[]elements;//dtor
 }
-
