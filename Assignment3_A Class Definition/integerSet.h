@@ -12,7 +12,7 @@ private:
     int used;
     int* elements;
 public:
-    integerSet(int); //
+    explicit integerSet(int); //
     integerSet(); //
 
     virtual ~integerSet(); //
