@@ -118,11 +118,6 @@ integerSet& integerSet::setdifference(integerSet& p) {
             (*out).insert(elements[i]);
         }
     }
-    for(int j=0;j<p.size();j++) {
-        if (!isMember(p.element()[j])) {
-            (*out).insert(p.element()[j]);
-        }
-    }
     return *out;
 }
 
