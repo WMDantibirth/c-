@@ -22,6 +22,15 @@ integerSet::integerSet(int r){
     used = 0;
 }
 
+integerSet::integerSet(integerSet& p) {
+    elements=new int[p.capacity()];
+    used=p.size();
+    ability=p.capacity();
+    for(int i=0;i<p.size();i++){
+        elements[i]=p.element()[i];
+    }
+}
+
 int* integerSet::element() {
     return elements;
 }
@@ -41,7 +50,7 @@ int integerSet::size(){
 }
 
 void integerSet::insert(int i){
-    if(used>ability-1){
+    if(used>=ability){
         bad_integerSet bi;
         bi.errnum=2;
         throw bi;
@@ -67,7 +76,7 @@ void integerSet::erase(int i){
 }
 
 bool integerSet::isEmpty(){
-    return used==0;
+    return used == 0;
 }
 
 int integerSet::capacity(){
@@ -102,34 +111,34 @@ bool integerSet::isSubset(integerSet& p){
     }
 }
 
-integerSet integerSet::setdifference(integerSet& p) {
-    integerSet out;
+integerSet& integerSet::setdifference(integerSet& p) {
+    auto out=new integerSet;
     for(int i=0;i<used;i++){
         if(!p.isMember(elements[i])){
-            out.insert(elements[i]);
+            (*out).insert(elements[i]);
         }
     }
-    for(int j=0;j<p.size();j++){
-        if(!isMember(p.element()[j])){
-            out.insert(p.element()[j]);
+    for(int j=0;j<p.size();j++) {
+        if (!isMember(p.element()[j])) {
+            (*out).insert(p.element()[j]);
         }
     }
-    return out;
+    return *out;
 }
 
-integerSet integerSet::setunion(integerSet& p) {
-    integerSet out;
-    for(int i=0;i<used;i++)out.insert(elements[i]);
+integerSet& integerSet::setunion(integerSet& p) {
+    auto out=new integerSet;
+    for(int i=0;i<used;i++)(*out).insert(elements[i]);
     for(int j=0;j<p.size();j++){
         if(!isMember(p.element()[j])){
-            out.insert(p.element()[j]);
+            (*out).insert(p.element()[j]);
         }
     }
-    return out;
+    return *out;
 }
 
-integerSet integerSet::setintsection(integerSet& t) {
-    integerSet ans;
+integerSet& integerSet::setintsection(integerSet& t) {
+    auto ans=new integerSet;
     for(int i=0; i<used; i++){
         int flag=0;
         for(int j=0; j<t.size(); j++)
@@ -137,21 +146,20 @@ integerSet integerSet::setintsection(integerSet& t) {
                 flag=1;
                 break;
             }
-        if(flag)ans.insert(elements[i]);
+        if(flag)(*ans).insert(elements[i]);
     }
-    return ans;
+    return *ans;
 }
 
-integerSet integerSet::setsymmetricdifference(integerSet& p) {
+integerSet& integerSet::setsymmetricdifference(integerSet& p) {
     integerSet r1{p.setdifference(*this)};
     integerSet r2{(*this).setdifference(p)};
     return r1.setunion(r2);
 }
 
 integerSet& integerSet::operator=(integerSet p) {
-    int* n;
-    n = new int[p.capacity()];
-    delete[]elements;
+    int* n = new int[p.capacity()];
+    delete[] elements;
     elements=n;
     used=0;
     ability=p.capacity();
@@ -162,5 +170,5 @@ integerSet& integerSet::operator=(integerSet p) {
 }
 
 integerSet::~integerSet(){
-    delete[]elements;//dtor
+    delete[] elements;//dtor
 }
