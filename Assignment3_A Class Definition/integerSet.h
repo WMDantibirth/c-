@@ -14,6 +14,7 @@ private:
 public:
     explicit integerSet(int); //
     integerSet(); //
+    integerSet(integerSet&);
 
     virtual ~integerSet(); //
 
@@ -27,14 +28,14 @@ public:
     int capacity(); //
     bool isEmpty(); //
     void clear(); //
-    integerSet setunion(integerSet&);//
-    integerSet setintsection(integerSet&);//
-    integerSet setdifference(integerSet&);//
-    integerSet setsymmetricdifference(integerSet&);//
+    integerSet& setunion(integerSet&);//
+    integerSet& setintsection(integerSet&);//
+    integerSet& setdifference(integerSet&);//
+    integerSet& setsymmetricdifference(integerSet&);//
     integerSet& operator=(integerSet);
 
     struct bad_integerSet{
-        int errnum=0;
+        int errnum;
     };
 };
 
