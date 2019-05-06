@@ -112,7 +112,7 @@ bool integerSet::isSubset(integerSet& p){
 }
 
 integerSet integerSet::setdifference(integerSet p) {
-    integerSet out(ability+p.capacity());
+    integerSet out(ability);
     for(int i=0;i<used;i++){
         if(!p.isMember(elements[i])){
             out.insert(elements[i]);
