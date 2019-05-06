@@ -112,7 +112,7 @@ bool integerSet::isSubset(integerSet& p){
 }
 
 integerSet& integerSet::setdifference(integerSet& p) {
-    auto out=new integerSet;
+    auto out=new integerSet(ability+p.capacity());
     for(int i=0;i<used;i++){
         if(!p.isMember(elements[i])){
             (*out).insert(elements[i]);
@@ -122,7 +122,7 @@ integerSet& integerSet::setdifference(integerSet& p) {
 }
 
 integerSet& integerSet::setunion(integerSet& p) {
-    auto out=new integerSet;
+    auto out=new integerSet(ability+p.capacity());
     for(int i=0;i<used;i++)(*out).insert(elements[i]);
     for(int j=0;j<p.size();j++){
         if(!isMember(p.element()[j])){
@@ -133,7 +133,7 @@ integerSet& integerSet::setunion(integerSet& p) {
 }
 
 integerSet& integerSet::setintsection(integerSet& t) {
-    auto ans=new integerSet;
+    auto ans=new integerSet(ability+t.capacity());
     for(int i=0; i<used; i++){
         int flag=0;
         for(int j=0; j<t.size(); j++)
