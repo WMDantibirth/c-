@@ -14,24 +14,24 @@ private:
 public:
     explicit integerSet(int); //
     integerSet(); //
-    integerSet(integerSet&);
+    integerSet(const integerSet&);
 
     virtual ~integerSet(); //
 
-    int* element();//
+    int* element()const ;//
     void insert(int); //
     void erase(int); //
     bool isSubset(integerSet&); //
     bool isMember(int); //
     void print(); //
-    int size(); //
-    int capacity(); //
+    int size()const ; //
+    int capacity()const ; //
     bool isEmpty(); //
     void clear(); //
-    integerSet& setunion(integerSet&);//
-    integerSet& setintsection(integerSet&);//
-    integerSet& setdifference(integerSet&);//
-    integerSet& setsymmetricdifference(integerSet&);//
+    integerSet setunion(integerSet);//
+    integerSet setintsection(integerSet);//
+    integerSet setdifference(integerSet);//
+    integerSet setsymmetricdifference(integerSet);//
     integerSet& operator=(integerSet);
 
     struct bad_integerSet{
