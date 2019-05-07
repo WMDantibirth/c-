@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------
 //
-// integerSetTest.cpp : Test program for Lab锛欰 Class Definition锛圧evisited).
+// integerSetTest.cpp : Test program for Lab：A Class Definition（Revisited).
 //
 //----------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ try
     // ***** test for union *****
 
     cout << "Union of two integer sets s1 and s2: " << endl;
-    cout << s1 << " 鈭?" << s2 << " = ";
+    cout << s1 << " ∪ " << s2 << " = ";
     integerSet r1{s1|s2};   // compute union of two integer sets
     cout << r1 << endl;
     cout << endl;
@@ -60,7 +60,7 @@ try
     // ***** test for intersection *****
 
     cout << "intersection of two integer sets s1 and s2: " << endl;
-    cout << s1 << " 鈭?" << s2 << " = ";
+    cout << s1 << " ∩ " << s2 << " = ";
     integerSet r2{s1&s2};  // compute intersection of two integer sets
     cout << r2 << endl;
     cout << endl;
@@ -68,13 +68,13 @@ try
     // ***** test for difference *****
 
     cout << "difference of two integer sets s1 and s2: " << endl;
-    cout << s1 << " 锛?" << s2 << " = ";
+    cout << s1 << " － " << s2 << " = ";
     integerSet r3{s1-s2};     // compute difference of two integer sets
     cout << r3 << endl;
     cout << endl;
 
     cout << "difference of two integer sets s2 and s1: " << endl;
-    cout << s2 << " 锛?" << s1 << " = ";
+    cout << s2 << " － " << s1 << " = ";
     integerSet r4{s2-s1};     // compute difference of two integer sets
     cout << r4 << endl;
     cout << endl;
@@ -82,7 +82,7 @@ try
     // ***** test for symmetric difference *****
 
     cout << "symmetric difference of two integer sets s1 and s2: " << endl;
-    cout << s1 << " symmetric锛?" << s2 << " = ";
+    cout << s1 << " symmetric－ " << s2 << " = ";
     integerSet r5{s1.setsymmetricdifference(s2)};   // compute symmetric difference of two integer sets
     cout << r5 << endl;
     cout << endl;
@@ -150,7 +150,7 @@ try
     cout << endl;
 
     // ***** test for input *****
-    cout << "Input s1 and s2 (format: N e1 e2鈥? : " << endl;
+    cout << "Input s1 and s2 (format: N e1 e2…) : " << endl;
     cin >> s1 >> s2;
     cout << "Set s1 after input : " << endl << s1 << endl;
     cout << "Set s2 after input : " << endl << s2 << endl;
