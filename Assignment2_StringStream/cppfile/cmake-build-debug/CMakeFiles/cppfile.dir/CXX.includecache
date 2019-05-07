@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+E:/c++/Assignment2_StringStream/.idea/cppfile/main.cpp
+iostream
+-
+stdio.h
+-
+vector
+-
+cmath
+-
+string
+-
+fstream
+-
+sstream
+-
+map
+-
+algorithm
+-
+
