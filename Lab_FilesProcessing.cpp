@@ -101,5 +101,4 @@ int main(int argc, char* argv[]) {
     }
     output_file.close();
     return 0;
-
 }
