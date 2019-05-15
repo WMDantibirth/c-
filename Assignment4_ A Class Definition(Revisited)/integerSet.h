@@ -5,6 +5,8 @@
 #ifndef ASSIGNMENT4_A_CLASS_DEFINITION_REVISTED__INTEGERSET_H
 #define ASSIGNMENT4_A_CLASS_DEFINITION_REVISTED__INTEGERSET_H
 
+#include <iostream>
+using namespace std;
 
 class integerSet {
 private:
@@ -37,8 +39,12 @@ public:
     integerSet operator|(integerSet);//
     integerSet operator&(integerSet);//
     integerSet operator-(integerSet);//
-    integerSet& operator=(integerSet);
-
+    integerSet& operator=(integerSet);//
+    friend ostream& operator<<(ostream&, const integerSet&);
+    friend istream& operator>>(istream&,integerSet&);
+    friend ostream& operator|=(ostream&,integerSet&);
+    friend ostream& operator&=(ostream&,integerSet&);
+    friend ostream& operator-=(ostream&,integerSet&);
 
     struct bad_integerSet{
         int errnum=0;
