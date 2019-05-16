@@ -4,6 +4,7 @@
 
 #include "integerSet.h"
 #include <iostream>
+using namespace std;
 
 integerSet::integerSet(){
     elements = new int[1000];
@@ -169,6 +170,40 @@ integerSet& integerSet::operator=(integerSet p) {
     for(int i=0;i<p.size();i++){
         insert(p.element()[i]);
     }
+    return *this;
+}
+
+ostream& operator<<(ostream& os, integerSet& c) {
+    os<<"{";
+    if(c.size()!=0){
+        for(int i=0;i<c.size()-1;i++){
+            os<<c.element()[i]<<",";
+        }
+        os<<c.element()[c.size()-1];
+    }
+    os<<"}";
+    return os;
+}
+
+istream& operator>>(istream& is, integerSet& c) {
+    int s;
+    is>>s;
+    c.insert(s);
+    return is;
+}
+
+integerSet& integerSet:: operator&=(integerSet& c) {
+    (*this)=setsymmetricdifference(c);
+    return *this;
+}
+
+integerSet& integerSet::operator|=(integerSet & c) {
+    (*this)=setunion(c);
+    return *this;
+}
+
+integerSet& integerSet::operator-=(integerSet & c) {
+    (*this)=setdifference(c);
     return *this;
 }
 
