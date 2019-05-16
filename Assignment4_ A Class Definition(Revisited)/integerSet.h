@@ -40,11 +40,11 @@ public:
     integerSet operator&(integerSet);//
     integerSet operator-(integerSet);//
     integerSet& operator=(integerSet);//
-    friend ostream& operator<<(ostream&, const integerSet&);
+    friend ostream& operator<<(ostream&,integerSet&);
     friend istream& operator>>(istream&,integerSet&);
-    friend ostream& operator|=(ostream&,integerSet&);
-    friend ostream& operator&=(ostream&,integerSet&);
-    friend ostream& operator-=(ostream&,integerSet&);
+    integerSet& operator|=(integerSet&);
+    integerSet& operator&=(integerSet&);
+    integerSet& operator-=(integerSet&);
 
     struct bad_integerSet{
         int errnum=0;
