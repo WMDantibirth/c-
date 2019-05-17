@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+E:/c++/Assignment3_A Class Definition/integerSet.cpp
+integerSet.h
+E:/c++/Assignment3_A Class Definition/integerSet.h
+iostream
+-
+
+E:/c++/Assignment3_A Class Definition/integerSet.h
+
