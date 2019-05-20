@@ -202,7 +202,7 @@ istream& operator>>(istream& is, integerSet& c) {
     return is;
 }
 
-integerSet& integerSet:: operator&=(integerSet& c) {
+integerSet& integerSet:: operator&=(integerSet & c) {
     (*this)=setintsection(c);
     return *this;
 }
