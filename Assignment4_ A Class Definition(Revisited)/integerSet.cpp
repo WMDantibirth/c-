@@ -186,14 +186,24 @@ ostream& operator<<(ostream& os, integerSet& c) {
 }
 
 istream& operator>>(istream& is, integerSet& c) {
+
     int s;
     is>>s;
-    c.insert(s);
+    delete[]c.elements;
+    c.elements = new int[s];
+    c.used=0;
+    c.ability=s;
+    for(int i=0;i<s;i++)
+    {
+        int p;
+        is>>p;
+        c.insert(p);
+    }
     return is;
 }
 
 integerSet& integerSet:: operator&=(integerSet& c) {
-    (*this)=setsymmetricdifference(c);
+    (*this)=setintsection(c);
     return *this;
 }
 
