@@ -7,7 +7,7 @@
 using  namespace std;
 Hqueue::Hqueue()
 {
-    Hq=new Base* [400];
+    Hq=new Base* [4000];
     num=0;
 }
 Hqueue::~Hqueue()
@@ -20,43 +20,63 @@ bool Hqueue::isEmpty()
 }
 void Hqueue::enqueue(Base *ii)
 {
-    Hq[qian]=ii;
-    qian++;
+    Hq[input_num]=ii;
+    input_num++;
     num++;
 }
 void Hqueue::dequeue()
 {
-    (*Hq[hou]).print();
-    hou++;
-    num--;
+    if(num<=0){
+        bad_op bi;
+        bi.type = "There is nothing in it";
+        throw bi;
+    }
+    else{
+        (*Hq[output_num]).print();
+        output_num++;
+        num--;
+    }
 }
 CHAR::CHAR(char a)
 {
-    charzi=a;
+    char_contain=a;
 }
 void CHAR::print()
 {
-    cout<<"CHAR:   "<<charzi<<endl;
+    cout<<"CHAR:   "<<char_contain<<endl;
 }
 INT::INT(int a)
 {
-    intzi=a;
+    int_contain=a;
 }
 void INT::print()
 {
-    cout<<"INT:   "<<intzi<<endl;
+    cout<<"INT:   "<<int_contain<<endl;
 }
 PhoneNumber::PhoneNumber()
 {
     num=0;
     name="";
 }
+PhoneNumber::PhoneNumber(string s, int i)
+{
+    num = i;
+    name = s;
+    initial = true;
+}
 void PhoneNumber::print()
 {
-    cout<<"PhoneNumber:  ("<<name<<","<<num<<")"<<endl;
+    if(initial)
+        cout<<"PhoneNumber:  ("<<name<<","<<num<<")"<<endl;
+    else{
+        Hqueue::bad_op bi;
+        bi.type = "The PhoneNumber has not been initialized";
+        throw bi;
+    }
 }
 istream & operator>>(istream & is,PhoneNumber &pn)
 {
+    pn.initial = true;
     is>>pn.name>>pn.num;
     return is;
 }
