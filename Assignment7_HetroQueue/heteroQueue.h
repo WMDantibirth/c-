@@ -10,55 +10,57 @@ using namespace std;
 
 class Base
 {
-    public:
-        virtual void print()=0;
+public:
+    virtual void print()=0;
 };
 
 class CHAR :public Base
 {
-    private:
-        char charzi;
-    public:
-        explicit CHAR(char);
-        void print();
+private:
+    char char_contain;
+public:
+    explicit CHAR(char);
+    void print();
 };
 
 class INT :public Base
 {
-    private:
-        int intzi;
-    public:
-        explicit INT(int);
-        void print();
+private:
+    int int_contain;
+public:
+    explicit INT(int);
+    void print();
 };
 
 class PhoneNumber :public Base
 {
-    private:
-        int num;
-        string name;
-    public:
-        PhoneNumber();
-        void print();
-        friend istream&operator>>(istream&,PhoneNumber&);
+private:
+    bool initial = false;
+    int num;
+    string name;
+public:
+    PhoneNumber();
+    PhoneNumber(string,int);
+    void print();
+    friend istream&operator>>(istream&,PhoneNumber&);
 };
 
 class Hqueue
 {
-    private:
-        int num;
-        Base**Hq;
-        int qian=0;
-        int hou=0;
-    public:
-        Hqueue();
-        bool isEmpty();
-        void enqueue(Base*);
-        void dequeue();
-        struct bad_op{
-            string type="Error";
-        };
-        virtual ~Hqueue();
+private:
+    int num;
+    Base**Hq;
+    int input_num=0;
+    int output_num = 0;
+public:
+    Hqueue();
+    bool isEmpty();
+    void enqueue(Base*);
+    void dequeue();
+    struct bad_op{
+        string type="Error";
+    };
+    virtual ~Hqueue();
 };
 
 #endif // HETEROQUEUE_H
