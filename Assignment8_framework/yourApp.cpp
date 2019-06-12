@@ -2,7 +2,10 @@
 #include<iostream>
 using namespace std;
 
-Your_filter::Your_filter(istream&i,ostream&o){}
+Your_filter::Your_filter(istream& ii,ostream& oo):is(ii),os(oo)
+{
+    nchar = 0;
+}
 
 void Your_filter::write()
 {
@@ -11,83 +14,29 @@ void Your_filter::write()
 
 int Your_filter::read()
 {
-    getline(is,line);
-    nline++;
+    if(getline(is,line)) {
+        nline++;
+        return 1;
+    }
+    else return 0;
 }
 
-void Your_filter::compute()
-{
+void Your_filter::compute() {
     char c;
-    nchar=0;
-    for(int i=0;i<=line.size();i++)
-    {
-        c=line[i];
-        if(c>=65&&c<=90)
-        {
-            c+=32;
+    nchar = 0;
+    for (int i = 0; i <= line.size(); i++) {
+        c = line[i];
+        if (c >= 65 && c <= 90) {
+            c += 32;
         }
         int out;
-        switch(c)
-        {
-        case 'a':
-            out=1;
-        case 'b':
-            out=3;
-        case 'c':
-            out=3;
-        case 'd':
-            out=2;
-        case 'e':
-            out=1;
-        case 'f':
-            out=4;
-        case 'g':
-            out=2;
-        case 'h':
-            out=4;
-        case 'i':
-            out=1;
-        case 'j':
-            out=8;
-        case 'k':
-            out=5;
-        case 'l':
-            out=1;
-        case 'm':
-            out=3;
-        case 'n':
-            out=1;
-        case 'o':
-            out=1;
-        case 'p':
-            out=3;
-        case 'q':
-            out=10;
-        case 'r':
-            out=1;
-        case 's':
-            out=1;
-        case 't':
-            out=1;
-        case 'u':
-            out=1;
-        case 'v':
-            out=4;
-        case 'w':
-            out=4;
-        case 'x':
-            out=8;
-        case 'y':
-            out=4;
-        case 'z':
-            out=10;
-        default:
-            out=0;
-        }
+        int list[26] = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+        if (c >= 'a' && c <= 'z') out = list[c - 'a'];
+        else if (c >= 'A' && c <= 'Z') out = list[c - 'A'];
+        else out = 0;
         nchar+=out;
     }
 }
-
 
 int Your_filter::result()
 {
