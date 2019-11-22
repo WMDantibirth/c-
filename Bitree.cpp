@@ -13,7 +13,7 @@ public:
     Node *parent;
     Node(int value,Node *p,Node *l, Node *r):
         key(value),parent(p),left(l),right(r){}
-    // ÅĞ¶ÏÊÇ·ñÎª¿Õ 
+    // åˆ¤æ–­æ˜¯å¦ä¸ºç©º 
     bool empty() {
     	if(left == nullptr && right == nullptr) return true;
     	return false;
@@ -29,19 +29,19 @@ public:
     ~Tree(){
         destroy(mroot);
     };
-    // ²åÈëº¯Êı
+    // æ’å…¥å‡½æ•°
     void insert(int key){
         Node *z = nullptr;
         if((z = new Node(key, nullptr, nullptr, nullptr)) == nullptr)
             return;
         insert(mroot, z);
     };
-    // Ç°Ğò±éÀú
+    // å‰åºéå†
     void preOrder(){
         preOrder(mroot);
         cout<<endl;
     };
-    // ·Çµİ¹éÇ°Ğò±éÀú
+    // éé€’å½’å‰åºéå†
 	void preOrderNoRecursion(){
 		if(mroot == nullptr) {
 			cout<<endl;
@@ -66,12 +66,12 @@ public:
 		}
 		cout<<endl;
 	};
-	// ÖĞĞò±éÀú
+	// ä¸­åºéå†
 	void inOrder(){
 		inOrder(mroot);
 		cout<<endl;
 	};
-	// ·Çµİ¹éÖĞĞò±éÀú
+	// éé€’å½’ä¸­åºéå†
 	void inOrderNoRecursion(){
 		if(mroot == nullptr) {
 			cout<<endl;
@@ -94,13 +94,13 @@ public:
 		    }
 		}
 		cout<<endl;
-	}
-	// ºóĞø±éÀú
+	};
+	// åç»­éå†
 	void postOrder(){
 		postOrder(mroot);
 		cout<<endl;
 	};
-	// ·Çµİ¹éºóĞø±éÀú
+	// éé€’å½’åç»­éå†
 	void postOrderNoRecursion(){
 		if(mroot == nullptr) {
 			cout<<endl;
@@ -128,7 +128,7 @@ public:
 		}
 		cout<<endl;
 	};
-	// ²ã´Î±éÀú
+	// å±‚æ¬¡éå†
 	void hierachicalorder(){
 		if(mroot == nullptr) return;
 		Node* s[maxn];
@@ -153,23 +153,23 @@ public:
 		}
 		cout<<endl;
 	}; 
-	// ½áµã¸öÊı
+	// ç»“ç‚¹ä¸ªæ•°
 	int count(){
 		return count(mroot);
-	} 
-    // Í³¼Æ¸ß¶È
+	};
+    // ç»Ÿè®¡é«˜åº¦
     int height(){
         return height(mroot);
     };
-    // ÅĞ¶ÏÊÇ·ñÊÇÂúÊ÷
+    // åˆ¤æ–­æ˜¯å¦æ˜¯æ»¡æ ‘
 	bool full(){
 		int h=height();
 		int t=1;
 		for(int i=0;i<h;i++) t*=2;
 		if(count()==t-1) return true;
 		else return false;
-	} 
-	// ÅĞ¶ÏÊÇ·ñÍêÈ«¶ş²æÊ÷
+	};
+	// åˆ¤æ–­æ˜¯å¦å®Œå…¨äºŒå‰æ ‘
 	bool  complete(){
 		if(mroot == nullptr) true;
 		Node* s[maxn];
@@ -199,13 +199,17 @@ public:
 			}
 		}
 		return true;
-	}
-    // Ïú»ÙÊ÷
+	};
+	// åˆ¤æ–­ä¸€æ£µäºŒå‰æ ‘æ˜¯å¦å·¦å­æ ‘ä¸Šçš„ç»“ç‚¹çš„å€¼éƒ½å°äºæ ¹ï¼Œå³å­æ ‘ä¸Šçš„ç»“ç‚¹çš„å€¼éƒ½å¤§äºæ ¹
+	bool judgement(){
+		return judgement(mroot);
+	};
+    // é”€æ¯æ ‘
     void destroy(){
         destroy(mroot);
     };
 private:
-	// ²åÈëº¯Êı
+	// æ’å…¥å‡½æ•°
     void insert(Node* &root, Node* node){
         Node *x = root;
         Node *y = nullptr;
@@ -226,7 +230,7 @@ private:
         else
             root = node;
     };
-	// Ç°Ğò±éÀú
+	// å‰åºéå†
     void preOrder(Node* tree) const{
         if (tree != nullptr){
             cout<< tree->key <<" ";
@@ -234,7 +238,7 @@ private:
             preOrder(tree->right);
         }
     };
-    // ÖĞĞò±éÀú
+    // ä¸­åºéå†
 	void inOrder(Node* tree) const{
 		if(tree != nullptr){
             inOrder(tree->left);
@@ -242,7 +246,7 @@ private:
             inOrder(tree->right);
 		}
 	};
-    // ºóĞò±éÀú 
+    // ååºéå† 
 	void postOrder(Node* node) const{
 		if (node != nullptr){
 			postOrder(node->left);
@@ -250,12 +254,12 @@ private:
 			cout<<node->key<<" ";
 		}
 	};
-	// ½áµã¸öÊı
+	// ç»“ç‚¹ä¸ªæ•°
 	int count(Node * node){
 		if(node==nullptr) return 0;
 		return count(node->left)+count(node->right)+1;
-	} 
-    // Í³¼Æ¸ß¶È 
+	};
+    // ç»Ÿè®¡é«˜åº¦ 
     int height(Node* node){
         if (node == nullptr) return 0;
         int l=height(node->left),r=height(node->right);
@@ -264,7 +268,24 @@ private:
         else
             return r+1;
     };
-    // Ïú»ÙÊ÷
+    // åˆ¤æ–­ä¸€æ£µäºŒå‰æ ‘æ˜¯å¦å·¦å­æ ‘ä¸Šçš„ç»“ç‚¹çš„å€¼éƒ½å°äºæ ¹ï¼Œå³å­æ ‘ä¸Šçš„ç»“ç‚¹çš„å€¼éƒ½å¤§äºæ ¹
+	bool judgement(Node* node){
+		if(node->empty()) return true;
+		else if(node->left!=nullptr && node->right!=nullptr){
+			if(node->left->key <= node->key && node->right->key >= node->key)
+				return(judgement(node->left) && judgement(node->right));
+			else return false;
+		}
+		else if(node->left == nullptr){
+			if(node->right->key >= node->key) return judgement(node->right);
+			else return false;
+		}
+		else{
+			if(node->left->key <= node->key) return judgement(node->left);
+			else return false;
+		}
+	};
+    // é”€æ¯æ ‘
     void destroy(Node* &tree){
         if(tree == nullptr)
             return;
@@ -280,11 +301,11 @@ private:
 int main(){
 	Tree tree;
 	vector<int> l;
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 10; i++)
         l.push_back(i);
     srand((unsigned)time(0));
     random_shuffle(l.begin(),l.end());
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 10; i++)
         tree.insert(l[i]);
     cout<<"postOrder: ";
     tree.postOrder();
@@ -306,4 +327,6 @@ int main(){
 	else cout<<"not full tree!\n";
 	if(tree.complete())cout<<"complete tree!\n";
 	else cout<<"not compelete tree!\n";
-}
+	if(tree.judgement()) cout<<"äºŒå‰æ ‘å·¦å­æ ‘ä¸Šçš„ç»“ç‚¹çš„å€¼éƒ½å°äºæ ¹ï¼Œå³å­æ ‘ä¸Šçš„ç»“ç‚¹çš„å€¼éƒ½å¤§äºæ ¹\n";
+	else cout<<"ä¸æ»¡è¶³äºŒå‰æ ‘å·¦å­æ ‘ä¸Šçš„ç»“ç‚¹çš„å€¼éƒ½å°äºæ ¹ï¼Œå³å­æ ‘ä¸Šçš„ç»“ç‚¹çš„å€¼éƒ½å¤§äºæ ¹\n";
+} 
